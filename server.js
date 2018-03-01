@@ -105,6 +105,8 @@ app.put('/restaurants/:id', (req, res) => {
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
 
+
+
 app.delete('/restaurants/:id', (req, res) => {
   Restaurant
     .findByIdAndRemove(req.params.id)

@@ -108,7 +108,7 @@ describe('Restaurants API resource', function() {
   // on proving something small
   describe('GET endpoint', function() {
 
-    it('should return all existing restaurants', function() {
+    it('should return all existing blog posts', function() {
       // strategy:
       //    1. get back all restaurants returned by by GET request to `/restaurants`
       //    2. prove res has right status, data type
@@ -254,20 +254,20 @@ describe('Restaurants API resource', function() {
     //  4. prove that restaurant with the id doesn't exist in db anymore
     it('delete a restaurant by id', function() {
 
-      let restaurant;
+      let post;
 
-      return Restaurant
+      return BlogPost
         .findOne()
-        .then(function(_restaurant) {
-          restaurant = _restaurant;
-          return chai.request(app).delete(`/restaurants/${restaurant.id}`);
+        .then(function(_posts) {
+          restaurant = _posts;
+          return chai.request(app).delete(`/posts/${posts.id}`);
         })
         .then(function(res) {
           expect(res).to.have.status(204);
-          return Restaurant.findById(restaurant.id);
+          return BlogPosts.findById(posts.id);
         })
-        .then(function(_restaurant) {
-          expect(_restaurant).to.be.null;
+        .then(function(_posts) {
+          expect(_posts).to.be.null;
         });
     });
   });
